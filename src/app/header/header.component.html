@@ -1,0 +1,19 @@
+<header>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<div><a routerLink=" " class="navbar-brand">Sierra Online</a>
+</div>  
+  
+    <span class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </span>&nbsp;&nbsp;&nbsp;&nbsp;
+  <span class ="navbar-nav navbar-collapse justify-content-end">
+    
+    <a  *ngIf="!loguser.isUserLoggedIn()" routerLink="/login" class ="nav_link">LogIn </a> 
+   <a  *ngIf="loguser.isUserLoggedIn()" routerLink ="/logout" class ="nav_link">LogOut</a></span>
+
+
+</nav>
+
+
+</header>

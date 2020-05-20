@@ -1,0 +1,62 @@
+<!-- Default form register -->
+<form class="text-center border border-dark bg-warning p-5">
+  <div class="container">
+    <p class="h4 mb-4">Sign up</p>
+    <div class="form-row mb-4">
+      <div class="col">
+        <!-- First name -->
+        <input type="text" name="regFname" id="defaultRegisterFormFirstName" [(ngModel)]="regFname" class="form-control"
+          placeholder="First name">
+
+      </div>
+      <div class="col">
+        <!-- Last name -->
+        <input type="text" id="defaultRegisterFormLastName" name="regLname" [(ngModel)]="regLname" class="form-control"
+          placeholder="Last name">
+      </div>
+    </div>
+
+    <!-- E-mail -->
+    <input type="email" name="regEmail" id="defaultRegisterFormEmail" [(ngModel)]="regEmail" class="form-control mb-4"
+      placeholder="E-mail">
+
+    <!-- Password -->
+    <input type="password" id="defaultRegisterFormPassword" name="regPassword" [(ngModel)]="regPassword"
+      class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+      At least 8 characters and 1 digit
+    </small>
+
+    <!-- Material unchecked -->
+    <div class="form-group">
+      <label>Please select profle type  </label>
+      <div class="form-control">
+        <label class="radio-inline">
+          <input type="radio" id="instructor" name="usertype" value="instructor" [(ngModel)]="usertype">
+          Instructor 
+        </label>
+        &nbsp;
+        <label class="radio-inline">
+          <input type="radio" id="student" name="usertype" value="student" [(ngModel)]="usertype">
+          Student
+        </label>
+      </div>
+    </div>
+
+
+    
+    <!-- Sign up button -->
+    <button (click)=handleRegistration()  block="true" class="btn btn-success">Register</button>
+
+
+  </div>
+
+  <hr>
+  <div *ngIf='duplicateUser' class="alert alert-warning">{{errorMessage}}</div>
+  <!-- Terms of service -->
+  <p>By clicking
+    <em>Sign up</em> you agree to our
+    <a href="" target="_blank">terms of service</a></p>
+
+</form>
+<!-- Default form register -->

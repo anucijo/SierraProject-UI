@@ -1,0 +1,15 @@
+
+<form class="text-center border border-dark bg-warning p-5">
+    <p class="h4 mb-4">Sign in</p>
+<div class="container">
+    <input type="email" name ="email" id="defaultLoginFormEmail" [(ngModel)]="email" class="form-control mb-4" placeholder="E-mail">
+
+
+    <input type="password" name ="password" id="defaultLoginFormPassword"  [(ngModel)]="password" class="form-control mb-4" placeholder="Password">
+&nbsp;
+<button (click) = handleLogin() class="btn btn-success">Login</button>
+</div>
+<div *ngIf ='inValidUser' class="alert alert-warning">{{errorMessage}}</div>
+<p>If you have not yet register with our website ,please SignUp <a routerLink="/registration"> here </a> </p>
+</form>
+
