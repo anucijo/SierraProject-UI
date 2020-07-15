@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 //import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +24,7 @@ httpOptions = {
 }*/
 
 
-  authenticate(login: object): Observable<object>{
+  authenticate(login: object): Observable<any>{
     console.log('Inside authenticate')
     //call the api
   return this.http.post(`http://localhost:8080/login`,login);
@@ -33,10 +34,21 @@ httpOptions = {
   isUserLoggedIn(){
     
     let loggedUser = sessionStorage.getItem('userLoggeIn');
-   // alert(loggedUser)
+  // return loggedUser;
     return !(null==loggedUser)
   }
+  
   logout(){
-    sessionStorage.removeItem('userLoggeIn')
+    sessionStorage.removeItem('userLoggeIn');
+    sessionStorage.removeItem('role');
+    sessionStorage.clear;
+  }
+  isInstructor(){
+    let instructor = sessionStorage.getItem('role');
+    return !(null==instructor)
+  }
+  isAdmin(){
+    let admin = sessionStorage.getItem('isAdmin');
+    return !(null==admin)
   }
 }

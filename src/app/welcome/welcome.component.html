@@ -1,1 +1,76 @@
-<h3 class="text-success"> Welcome {{name}} to Sierra Online !</h3>
+<div id="welcomediv">
+
+    <marquee behavior="scroll" direction="right" scrollamount="10">
+        <h2 class="text-center" style="color:blue;"> Welcome to Sierra Online !</h2>
+    </marquee>
+    <h3><a *ngIf="isUserLoggedIn && isInstructor" routerLink="/upload"> <b style="color: maroon;">Upload Your Tutorial
+                Video here </b></a></h3>
+    
+    {{successmsg}}
+    <h3><a *ngIf="isUserLoggedIn && isAdmin" routerLink="/admin"> <b style="color: maroon;">View Admin Page </b></a></h3>
+    <!--
+{{responseSearches}}
+
+<video><source src="data:image/png;base64"{{data}} type="video/mp4"></video>
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
+  //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+
+-->
+
+    <div *ngIf="searchtext">
+        <div class="form-row">
+            <h2>Search results for <b>"{{searchtext}}"</b> ...</h2>
+        </div>
+        <div class="form-row mb-4">
+            <div class="col" *ngFor="let response of responseSearches">
+                <video width="320" height="200" controls>
+                    <source src="data:video/mp4;base64,{{response.videoBytes}}" type="video/mp4">
+                </video>
+                <h4>{{response.videoName}}</h4>
+                <span>
+                    <button (click)=addToMyOrder(response) block="true" class="btn btn-success">Add to My
+                        Bucket</button>
+                </span>
+                {{addtocartmessage}}
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <video width="320" height="200" controls>
+                <source src="assets/video/SpringBoot.mp4" type="video/mp4">
+            </video>
+            <h4>Spring Boot</h4>
+            <!--   <h4>Java Collections Tutorial Part 2</h4>
+           <video width="320" height="200" controls>
+                <source src="assets/video/Video_4.mp4" type="video/mp4">
+            </video>-->
+        </div>
+        <div class="col">
+            <!--   <video width="320" height="200" controls>
+                <source src="assets/video/Video_5.mp4" type="video/mp4">
+            </video>
+            <h4>Java Collections Tutorial Part 4</h4>-->
+            <video width="320" height="200" controls>
+                <source src="assets/video/Video_6.mp4" type="video/mp4">
+            </video>
+            <h4>Servlet Tutorial Part</h4>
+        </div>
+        <div class="col">
+            <!-- <h4>Servlet Tutorial Part3 </h4>
+           <video width="320" height="200" controls>
+                <source src="assets/video/Video_5.mp4" type="video/mp4">
+            </video> -->
+            <video width="320" height="200" controls>
+                <source src="assets/video/microservices.mp4">
+            </video>
+            <h4>What are microservices?</h4>
+        </div>
+    </div>
+</div>

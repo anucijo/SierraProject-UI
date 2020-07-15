@@ -1,15 +1,39 @@
-
-<form class="text-center border border-dark bg-warning p-5">
+<form #loginForm="ngForm" class="text-center border border-dark bg-light p-5">
     <p class="h4 mb-4">Sign in</p>
-<div class="container">
-    <input type="email" name ="email" id="defaultLoginFormEmail" [(ngModel)]="email" class="form-control mb-4" placeholder="E-mail">
+    <div class="container">
+        <div class="form-group" [class.has-errors]="emailId.invalid && emailId.touched"
+            [class.has-success]="emailId.valid">
+            <input type="email" name="email" id="defaultLoginFormEmail"
+            class="form-control" required minlength="4" [(ngModel)]="email" class="form-control mb-4"
+            placeholder="E-mail" #emailId="ngModel">
+            <span class="text-danger" *ngIf="emailId.errors?.required && emailId.touched">
+                Email is required
+            </span>
+            <span class="text-danger" *ngIf="emailId.errors?.email && emailId.touched">
+                Email is Invald.<Ex: Evlyn@gmail.com>
+            </span>
+        </div>
+        <div class="form-group" [class.has-errors]="passwordlogin.invalid && passwordlogin.touched"
+        [class.has-success]="passwordlogin.valid">
 
-
-    <input type="password" name ="password" id="defaultLoginFormPassword"  [(ngModel)]="password" class="form-control mb-4" placeholder="Password">
-&nbsp;
-<button (click) = handleLogin() class="btn btn-success">Login</button>
-</div>
-<div *ngIf ='inValidUser' class="alert alert-warning">{{errorMessage}}</div>
-<p>If you have not yet register with our website ,please SignUp <a routerLink="/registration"> here </a> </p>
+        <input type="password"
+            name="password" id="defaultLoginFormPassword" [(ngModel)]="password" class="form-control mb-4"
+            placeholder="Password" #passwordlogin="ngModel">
+            <span class="text-danger" *ngIf="passwordlogin.errors?.minlength">
+                Password must be atleast 6 characters long
+              </span>
+              <span class="text-danger" *ngIf="passwordlogin.errors?.required">
+                Password is required
+              </span>
+        </div>
+        
+        <br><br>
+        <div></div>
+       <!-- <div *ngIf="loginForm.valid && loginForm.touched">-->
+            <button (click)=handleLogin() class="btn btn-success">Login</button>
+        <!--</div>-->
+    </div>
+    
+    <div *ngIf='inValidUser' class="alert alert-warning">{{errorMessage}}</div>
+    <p>If you have not yet register with our website ,please SignUp <a routerLink="/registration"> here </a> </p>
 </form>
-

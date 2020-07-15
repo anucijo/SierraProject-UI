@@ -1,19 +1,24 @@
-<header>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-<div><a routerLink=" " class="navbar-brand">Sierra Online</a>
-</div>  
+<header class="header">
+  <nav class="navbar navbar-expand-md navbar-light bg-dark">
+    <div>
   
-    <span class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </span>&nbsp;&nbsp;&nbsp;&nbsp;
-  <span class ="navbar-nav navbar-collapse justify-content-end">
-    
-    <a  *ngIf="!loguser.isUserLoggedIn()" routerLink="/login" class ="nav_link">LogIn </a> 
-   <a  *ngIf="loguser.isUserLoggedIn()" routerLink ="/logout" class ="nav_link">LogOut</a></span>
+      <a routerLink="" class="navbar-brand">
+      <img src = "assets/image/Sierra.png" height ="50" width="120"></a>
+    </div>
 
-
-</nav>
-
-
+    <span class="form-inline">
+      <input class="form-control" type="search" name="searchKeyword" [(ngModel)]="searchKeyword" 
+      placeholder="Search for courses" aria-label="Search">&nbsp;
+      <button (click)=handleSearch() class="btn btn-outline-primary" type="submit">Search</button>
+    </span>
+    <span class="navbar navbar-collapse justify-content-middle" height ="10%" width="10%" >
+    <h3><a *ngIf="loguser.isUserLoggedIn()" routerLink="/cart">My Bucket</a></h3>
+    </span>
+    <span class="navbar navbar-collapse justify-content-end" height ="10%" width="10%" >
+      
+      <h3 *ngIf="loguser.isUserLoggedIn()" class="text-light">{{name}}</h3> &nbsp;
+      <h3><a *ngIf="!loguser.isUserLoggedIn()" routerLink="/login">Login</a></h3>
+      <h3><a *ngIf="loguser.isUserLoggedIn()" routerLink="/logout" class="">Logout</a></h3>
+    </span>
+  </nav>
 </header>

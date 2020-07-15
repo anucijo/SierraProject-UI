@@ -1,55 +1,95 @@
 <!-- Default form register -->
-<form class="text-center border border-dark bg-warning p-5">
+<form #regForm="ngForm" class="text-center border border-dark bg-light p-5">
   <div class="container">
     <p class="h4 mb-4">Sign up</p>
-    <div class="form-row mb-4">
-      <div class="col">
-        <!-- First name -->
-        <input type="text" name="regFname" id="defaultRegisterFormFirstName" [(ngModel)]="regFname" class="form-control"
-          placeholder="First name">
-
-      </div>
-      <div class="col">
-        <!-- Last name -->
-        <input type="text" id="defaultRegisterFormLastName" name="regLname" [(ngModel)]="regLname" class="form-control"
-          placeholder="Last name">
+    <div class="form-group" [class.has-errors]="fname.invalid && fname.touched" [class.has-success]="fname.valid">
+      <div class="form-row mb-4">
+        <div class="col">
+          <!-- First name -->
+          <input type="text" name="regFname" required id="regFname" [(ngModel)]="regFname" class="form-control"
+            placeholder="First name" #fname="ngModel">
+          <span class="text-danger" *ngIf="fname.invalid && fname.touched">
+            Name is required
+          </span>
+        </div>
+        <div class="col">
+          <!-- Last name -->
+          <input type="text" id="regLname" name="regLname" [(ngModel)]="regLname" class="form-control"
+            placeholder="Last name">
+        </div>
       </div>
     </div>
-
     <!-- E-mail -->
-    <input type="email" name="regEmail" id="defaultRegisterFormEmail" [(ngModel)]="regEmail" class="form-control mb-4"
-      placeholder="E-mail">
-
+    <div class="form-group" [class.has-errors]="email.invalid && email.touched" [class.has-success]="email.valid">
+      <input type="email" name="regEmail" required id="regEmail" [email]="regEmail!==''" [(ngModel)]="regEmail"
+        class="form-control mb-4" placeholder="E-mail" #email="ngModel">
+      <span class="text-danger" *ngIf="email.errors?.required && email.touched">
+        Email is required
+      </span>
+      <span class="text-danger" *ngIf="email.errors?.email && email.touched">
+        Email is Invald.<Ex: Evlyn@gmail.com>
+      </span>
+    </div>
     <!-- Password -->
-    <input type="password" id="defaultRegisterFormPassword" name="regPassword" [(ngModel)]="regPassword"
-      class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-      At least 8 characters and 1 digit
-    </small>
+    <div class="form-group" [class.has-errors]="password.invalid && password.touched"
+      [class.has-success]="password.valid">
+      <input type="password" required id="regPassword" minlength="6" name="regPassword" [(ngModel)]="regPassword"
+        class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock"
+        #password="ngModel">
+
+      <span class="text-danger" *ngIf="password.invalid && password.touched">
+        <span class="text-danger" *ngIf="password.errors.minlength">
+          Password must be atleast 6 characters long
+        </span>
+        <span class="text-danger" *ngIf="password.errors.required">
+          Password is required
+        </span>
+      </span>
+    </div>
+    <!-- Phone Number-->
+    <div class="form-group" [class.has-errors]="phoneNumber.invalid && phoneNumber.touched" [class.has-success]="phoneNumber.valid">
+      <div class="form-row mb-4">
+
+        <input type="text" name="regPhoneNumber" required id="regPhoneNumber" [(ngModel)]="regPhoneNumber" class="form-control"
+          placeholder="Phone Number" #phoneNumber="ngModel">
+        <span class="text-danger" *ngIf="phoneNumber.invalid && phoneNumber.touched">
+          Phone Number is required
+        </span>
+      </div>
+    </div> 
+
 
     <!-- Material unchecked -->
     <div class="form-group">
-      <label>Please select profle type  </label>
-      <div class="form-control">
+      <label>Please select profle type </label>
+      <div class="form-control" [class.has-errors]="type.invalid && type.touched" [class.has-success]="type.valid">
         <label class="radio-inline">
-          <input type="radio" id="instructor" name="usertype" value="instructor" [(ngModel)]="usertype">
-          Instructor 
+          <input type="radio" id="instructor" required name="usertype" value="instructor" [(ngModel)]="usertype"
+            #type="ngModel">
+          Instructor
         </label>
         &nbsp;
         <label class="radio-inline">
-          <input type="radio" id="student" name="usertype" value="student" [(ngModel)]="usertype">
+          <input type="radio" id="student" required name="usertype" value="student" [(ngModel)]="usertype"
+            #type="ngModel">
           Student
         </label>
+        <span class="text-danger" *ngIf="type.invalid && type.touched">
+          Password is required
+        </span>
+
       </div>
     </div>
 
 
-    
-    <!-- Sign up button -->
-    <button (click)=handleRegistration()  block="true" class="btn btn-success">Register</button>
 
-
+    <div *ngIf="regForm.valid && regForm.touched">
+      <!-- Sign up button -->
+      <button (click)=handleRegistration() block="true" [disabled]="regForm.invalid"
+        class="btn btn-success">Register</button>
+    </div>
   </div>
+
 
   <hr>
   <div *ngIf='duplicateUser' class="alert alert-warning">{{errorMessage}}</div>

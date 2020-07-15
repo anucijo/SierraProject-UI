@@ -5,6 +5,6 @@ export class user{
         password:String
         role:String
         userName:String
-    
+        phoneNumber:String 
 
 }

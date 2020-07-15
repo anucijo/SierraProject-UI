@@ -1,0 +1,11 @@
+<div class="form-row">
+    <h2>My Bucket</h2>
+</div>
+<div class="form-row mb-4">
+    <div class="col" *ngFor="let response of responseSearches">
+        <video width="150" height="70" controls>
+            <source src="data:video/mp4;base64,{{response.videoBytes}}" type="video/mp4">
+        </video>
+        <h4>{{response.videoName}}</h4>
+    </div>
+</div>

@@ -1,2 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
-@import url(https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css)
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css);
+
+/* Import for material styles */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body { height: 100%; }
+body { margin: 0;
+     font-family: Roboto, 
+     "Helvetica Neue",
+      sans-serif; 
+    background-color: white;
+  
+      background-image: url('/assets/image/study.jpg');
+  
+}
+
+.content {
+  height: 100%;
+  margin: 0 0 0 0 !important;
+  flex: 1 0 auto;
+}
